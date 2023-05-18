@@ -40,7 +40,7 @@
                     <ul class="dropdown-menu">
                       <li><a class="dropdown-item" href=" {% url 'Main:vue_formulaire' lt.id %} ">Voir</a></li>
                       <li><a class="dropdown-item" href="#">Modifier</a></li>
-                      <li><a class="dropdown-item" href="#">Supprimer</a></li>
+                      <li><a class="dropdown-item" href="{% url 'Main:delete_formulaire' lt.id %}"onclick="return confirm('Etes vous sure de vouloir supprimer ?')">Supprimer</a></li>
                     </ul>
                   </div>
                 </div>

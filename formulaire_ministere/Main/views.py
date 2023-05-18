@@ -4,6 +4,9 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect
 
 from django.views import View
+from django.urls import reverse
+
+from django.shortcuts import redirect,get_object_or_404
 
 from django.contrib import messages
 
@@ -59,7 +62,7 @@ class ListDataView(View):
         }
 
         return render(request,self.template_name,context)
-    
+
 
 class ListFormulaireView(View):
     template_name="formulaire.html"
@@ -71,3 +74,11 @@ class ListFormulaireView(View):
         }
 
         return render(request,self.template_name,context)
+
+
+
+def delete_form(request,dataform_id):
+    form = get_object_or_404(DataForm, id=dataform_id)
+    form.delete()
+    messages.success(request, "Formulaire Supprimer avec success!")
+    return HttpResponseRedirect('/liste_formulaire')
