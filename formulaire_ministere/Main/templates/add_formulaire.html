@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}Ajouter Formulaire{% endblock title %}
+
+{% load crispy_forms_tags %}
+
+{% block main %}
+
+<br>
+<br>
+<br>
+    <form method="post" enctype="multipart/form-data" autocomplete="off" class="card p-2 mt-3" novalidate >
+        {% csrf_token %}
+        {% comment %} {{form|crispy}} {% endcomment %}
+
+        <div class="row">
+            <div class="col-6">{{form.detenteur |as_crispy_field}}</div>
+            <div class="col-6">{{form.lieu_extraction|as_crispy_field}}</div>
+        </div>
+        <hr style="border: 1px solid black;"></hr>
+        <div class="row">
+            <div class="col-6">{{form.commune|as_crispy_field}}</div>
+            <div class="col-6">{{form.substence|as_crispy_field}}</div>        
+        </div>
+        <hr style="border: 1px solid black;"></hr>
+        <div class="row">
+            <div class="col-12">{{form.montant|as_crispy_field}}</div>
+      
+        </div>
+
+       
+
+    <button type='submit' class='btn btn-primary' >Ajouter</button>
+    </form>
+
+
+{% endblock main %}

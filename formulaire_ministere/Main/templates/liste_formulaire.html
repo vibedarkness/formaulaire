@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block title %}Liste Formulaire{% endblock title %}
+
+
+{% block main %}
+
+<br>
+<br>
+<br>
+<br>
+
+<table id="example" class="table table-striped table-bordered nowrap" style="width:100%">
+    <thead>
+        <tr>
+            <th>Detenteur</th>
+            <th>Lieu Extraction</th>
+            <th>Commune</th>
+            <th>Substence</th>
+            <th>Montant</th>
+            <th>Date</th>
+            <th>Actions</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        {% for lt in liste %}
+        <tr>
+            <td>{{lt.detenteur}}</td>
+            <td>{{lt.lieu_extraction}}</td>
+            <td>{{lt.commune}}</td>
+            <td>{{lt.substence}}</td>
+            <td>{{lt.montant}}</td>
+            <td>{{lt.date}}</td>
+            <td>
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Actions
+                    </button>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href=" {% url 'Main:vue_formulaire' lt.id %} ">Voir</a></li>
+                      <li><a class="dropdown-item" href="#">Modifier</a></li>
+                      <li><a class="dropdown-item" href="#">Supprimer</a></li>
+                    </ul>
+                  </div>
+                </div>
+
+            </td>
+
+
+        </tr>
+        {% endfor %}
+        
+    </tbody>
+</table>
+
+
+
+{% endblock main %}
+
