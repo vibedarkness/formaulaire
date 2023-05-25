@@ -14,5 +14,5 @@ class ClientDataForm(forms.ModelForm):
    montant= forms.IntegerField()
 
    class Meta:
-        model = DataForm
+      #   model = DataForm
         fields = "__all__"
