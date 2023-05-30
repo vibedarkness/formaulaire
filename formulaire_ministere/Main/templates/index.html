@@ -1,11 +1,57 @@
 {% extends "base.html" %}
 
-{% block title %}Acceuil{% endblock title %}
+{% block title %}Liste Client{% endblock title %}
 
-{% load static %}
 
 {% block main %}
 
-Acceuil
+<br>
+<br>
+<br>
+<br>
+
+<table id="example" class="table table-striped table-bordered nowrap" style="width:100%">
+    <thead>
+        <tr>
+            <th>Prenom</th>
+            <th>Nom</th>
+            <th>Adresse</th>
+            <th>Telephone</th>
+            <th>Actions</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        {% for cli in client %}
+        <tr>
+            <td>{{cli.prenom}}</td>
+            <td>{{cli.nom}}</td>
+            <td>{{cli.adresse}}</td>
+            <td>{{cli.telephone}}</td>
+
+            <td>
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Actions
+                    </button>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href=" ">Voir</a></li>
+                      <li><a class="dropdown-item" href="#">Modifier</a></li>
+                      <li><a class="dropdown-item" href=""onclick="return confirm('Etes vous sure de vouloir supprimer ?')">Supprimer</a></li>
+                    </ul>
+                  </div>
+                </div>
+
+            </td>
+
+
+        </tr>
+        {% endfor %}
+        
+    </tbody>
+</table>
+
+
 
 {% endblock main %}
+

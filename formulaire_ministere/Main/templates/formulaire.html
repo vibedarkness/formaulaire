@@ -61,13 +61,13 @@
             <br>
 
             <div style=" border: 1px solid black; width: 450px; height: 40px; border-radius: 10px;margin-left: 180px;">
-                <h3 style="text-align: center;"> PAIEMENT REDEVENCE MINIERE </h3>
+                <h3 style="text-align: center;"> PAIEMENT {{form.type_facture}} </h3>
             </div>
 
             <br>
 
             <div style="margin-left: 90px;">
-                <h6>Détenteur: &nbsp;&nbsp;&nbsp;{{form.detenteur}} </h6><br><br>
+                <h6>Détenteur: &nbsp;&nbsp;&nbsp;{{form.detenteur.prenom}} {{form.detenteur.nom}} </h6><br><br>
                 <h6>Lieu d'extraction: &nbsp;&nbsp;&nbsp;{{form.lieu_extraction}} </h6><br><br>
                 <h6>Commune: &nbsp;&nbsp;&nbsp;{{form.commune}}  </h6><br><br>
                 <h6>Substence Extraite: &nbsp;&nbsp;&nbsp;{{form.substence}} </h6><br><br>

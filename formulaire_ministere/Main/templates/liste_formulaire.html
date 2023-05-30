@@ -14,6 +14,7 @@
     <thead>
         <tr>
             <th>Detenteur</th>
+            <th>Type Facture</th>
             <th>Lieu Extraction</th>
             <th>Commune</th>
             <th>Substence</th>
@@ -26,7 +27,8 @@
     <tbody>
         {% for lt in liste %}
         <tr>
-            <td>{{lt.detenteur}}</td>
+            <td>{{lt.detenteur.prenom}} {{lt.detenteur.nom}}</td>
+            <td>{{lt.type_facture}}</td>
             <td>{{lt.lieu_extraction}}</td>
             <td>{{lt.commune}}</td>
             <td>{{lt.substence}}</td>

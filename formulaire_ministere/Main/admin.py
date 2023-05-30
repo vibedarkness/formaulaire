@@ -13,7 +13,9 @@ class DataFormAdmin(admin.ModelAdmin):
 
 admin.site.register(DataForm, DataFormAdmin)
 
-admin.site.register(FullUser, UserAdmin)
+admin.site.register(FullUser)
+
+admin.site.register(Staff)
 
 
 
