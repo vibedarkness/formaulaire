@@ -6,9 +6,9 @@
 
 {% block main %}
 
-<br>
-<br>
-<br>
+<marquee behavior="alternate">
+    <h1 class="h3 mb-2 text-gray-800">ICI VOUS POUVEZ AJOUTER DES FACTURES</h1>
+    </marquee>
 <div class="row">
     {% if messages %}
    <div class="col-12">
@@ -20,30 +20,111 @@
     </div>
     {% endif %}
   </div>
-    <form method="post" enctype="multipart/form-data" autocomplete="off" class="card p-2 mt-3" novalidate >
-        {% csrf_token %}
-        {% comment %} {{form|crispy}} {% endcomment %}
- 
-        <div class="row">
-            <div class="col-6">{{form.type_facture |as_crispy_field}}</div>
-            <div class="col-6">{{form.detenteur|as_crispy_field}}</div>
-        </div>
-        <hr style="border: 1px solid black;"></hr>
-        <div class="row">
-            <div class="col-6">{{form.commune|as_crispy_field}}</div>
-            <div class="col-6">{{form.substence|as_crispy_field}}</div>        
-        </div>
-        <hr style="border: 1px solid black;"></hr>
-        <div class="row">
-            <div class="col-6">{{form.montant|as_crispy_field}}</div>
-            <div class="col-6">{{form.lieu_extraction|as_crispy_field}}</div>
-      
-        </div>
 
-       
+  <div class="container">
 
-    <button type='submit' class='btn btn-primary' >Ajouter</button>
-    </form>
+  <form method="post">
+      {% csrf_token %}
+      <div class="form-row">
+          <div class="form-group col-md-6">
+              <label for="name"> Type de Facture</label>
+              <select name="type" class="form-control" required id="age">
+                <option> Choisissez le type de facture .. </option>
+                <option value="REDEVANCE MINIERE">REDEVANCE MINIERE</option>
+                <option value="DROIT FIXE">DROIT FIXE</option>
+            </select>
+          </div>
+  
+          <div class="form-group col-md-6">
+              <label for="email"> Detenteur</label>
+              <select name="detenteur" class="form-control" required id="age">
+                <option> Choisissez le client .. </option>
+                {% for det in detenteur %}
+                <option value="{{det.id}}">{{det.nom_entreprise}}</option>
+                {% endfor %}
+            </select>
+          </div>
+
+      </div>
+  
+      <div class="form-row">
+          <div class="form-group col-md-6">
+              <label for="sex">Region</label>
+              <select name="region" class="form-control" required id="sex">
+                  <option> Choisissez votre Region .. </option>
+                  <option value="Dakar">Dakar</option>
+                  <option value="Thies">Thies</option>
+                  <option value="Louga">Louga</option>
+                  <option value="Ziguinchor">Ziguinchor</option>
+                  <option value="Diourbel">Diourbel</option>
+                  <option value="Fatick">Fatick</option>
+                  <option value="Kaolack">Kaolack</option>
+                  <option value="Saint-Louis">Saint-Louis</option>
+                  <option value="Matam">Matam</option>
+                  <option value="Kedougou">Kedougou</option>
+                  <option value="Tambacounda">Tambacounda</option>
+                  <option value="Sedhiou">Sedhiou</option>
+                  <option value="Kolda">Kolda</option>
+                  <option value="Kaffrine">Kaffrine</option>
+              </select>
+          </div>
+  
+          <div class="form-group col-md-6">
+              <label for="age">Substence</label>
+              <select name="substence" class="form-control" required id="age">
+                  <option> Choose le substence .. </option>
+                  {% for sub in substence %}
+                  <option value="{{sub.id}}">{{sub.nom}}</option>
+                  {% endfor %}
+              </select>
+          </div>
+  
+      </div>
+  
+      <div class="form-row">
+          <div class="form-group col-md-12">
+              <label for="addres"> Commune </label>
+              <input name="commune" type="text" required type="text" class="form-control" id="address"
+                  placeholder="Commune">
+          </div>
+      </div>
+  
+      <div class="form-row">
+          <div class="form-group col-md-6">
+              <label for="city"> Montant </label>
+              <input name="montant" type="number" class="form-control" id="city" placeholder="Montant">
+          </div>
+            
+          <div class="form-group col-md-6">
+            <label for="phone"> Lieu d'extraction </label>
+            <input name="lieu" required type="text" class="form-control" id="phone"
+                placeholder="Lieu d'extraction">
+        </div>
+      </div>
+  
+      <button type="submit" class="btn btn-primary">Ajouter</button>
+  
+  </form>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 {% endblock main %}

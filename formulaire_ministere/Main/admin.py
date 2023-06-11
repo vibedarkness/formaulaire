@@ -11,11 +11,14 @@ from django.contrib.auth.admin import UserAdmin
 class DataFormAdmin(admin.ModelAdmin):
     list_display = ('detenteur','lieu_extraction','commune','substence','montant','date')
 
+
+class CustomAdmin(UserAdmin):
+    list_display = ('username','password')    
+
 admin.site.register(DataForm, DataFormAdmin)
 
-admin.site.register(FullUser)
+admin.site.register(CustomUser,CustomAdmin)
 
-admin.site.register(Staff)
 
 
 

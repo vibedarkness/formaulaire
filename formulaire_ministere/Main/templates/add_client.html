@@ -6,9 +6,9 @@
 
 {% block main %}
 
-<br>
-<br>
-<br>
+<marquee behavior="alternate">
+    <h1 class="h3 mb-2 text-gray-800">ICI VOUS POUVEZ AJOUTER DES CLIENTS</h1>
+    </marquee>
 <div class="row">
     {% if messages %}
    <div class="col-12">
@@ -20,13 +20,14 @@
     </div>
     {% endif %}
   </div>
+  <div class="container">
     <form method="post" enctype="multipart/form-data" autocomplete="off" class="card p-2 mt-3" novalidate >
         {% csrf_token %}
         {% comment %} {{form|crispy}} {% endcomment %}
 
         <div class="row">
-            <div class="col-6">{{form.prenom|as_crispy_field}}</div>
-            <div class="col-6">{{form.nom|as_crispy_field}}</div>
+            <div class="col-6">{{form.nom_entreprise|as_crispy_field}}</div>
+            <div class="col-6">{{form.registre_de_commerce|as_crispy_field}}</div>
         </div>
         <hr style="border: 1px solid black;"></hr>
         <div class="row">
@@ -42,6 +43,6 @@
 
     <button type='submit' class='btn btn-primary' >Ajouter</button>
     </form>
-
+</div>
 
 {% endblock main %}

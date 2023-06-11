@@ -150,4 +150,11 @@ except Exception as e:
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-AUTH_USER_MODEL="Main.FullUser"
+# AUTH_USER_MODEL="Main.FullUser"
+
+AUTH_USER_MODEL="Main.CustomUser"
+
+AUTHENTICATION_BACKENDS=['Main.EmailBackend.EmailBackend']
+
+LOGIN_REDIRECT_URL = '/loginapp'
+LOGOUT_REDIRECT_URL = '/loginapp'

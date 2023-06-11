@@ -16,7 +16,7 @@
         crossorigin="anonymous"></script>
     <link rel="stylesheet" type="text/css" href="{% static " print.css" %}" media="print">
     <!-- <link rel="stylesheet" href="style.css"> -->
-    <title>Document</title>
+    <title>Facture</title>
 </head>
 
 <body>
@@ -31,7 +31,7 @@
                 <br>
                 <h4>REPUBLIQUE DU SENEGAL 
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                   Diourbel, le {{form.date|date:"j / n/ Y"}} <br> &nbsp; <small style="font-family: Light Italic;">  Un Peuple-Un But-Une Foi</small> 
+                   {{form.region}}, le {{form.date|date:"j / n/ Y"}} <br> &nbsp; <small style="font-family: Light Italic;">  Un Peuple-Un But-Une Foi</small> 
                 </h4>
 
 
@@ -46,7 +46,7 @@
 
             <div style="margin-left: 60px;">
 
-                <h6> <strong> Service Regional des Mines et de la <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Geologie de Diourbel <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ********** </strong></h6>
+                <h6> <strong> Service Regional des Mines et de la <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Geologie de {{form.region}} <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ********** </strong></h6>
 
 
             </div>
@@ -67,7 +67,7 @@
             <br>
 
             <div style="margin-left: 90px;">
-                <h6>Détenteur: &nbsp;&nbsp;&nbsp;{{form.detenteur.prenom}} {{form.detenteur.nom}} </h6><br><br>
+                <h6>Détenteur: &nbsp;&nbsp;&nbsp;{{form.detenteur.nom_entreprise}} </h6><br><br>
                 <h6>Lieu d'extraction: &nbsp;&nbsp;&nbsp;{{form.lieu_extraction}} </h6><br><br>
                 <h6>Commune: &nbsp;&nbsp;&nbsp;{{form.commune}}  </h6><br><br>
                 <h6>Substence Extraite: &nbsp;&nbsp;&nbsp;{{form.substence}} </h6><br><br>
@@ -77,7 +77,7 @@
 
 
 
-            <h7 style="margin-left: 90px;">A la Caisse au Service Regional des Mines et de la Géologie de Diourbel.</h7>
+            <h7 style="margin-left: 90px;">A la Caisse au Service Regional des Mines et de la Géologie de {{form.region}}.</h7>
             <br>
             <br>
             <br>
