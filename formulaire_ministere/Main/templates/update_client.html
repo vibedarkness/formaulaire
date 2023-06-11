@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}Modifier Client{% endblock title %}
+
+{% load crispy_forms_tags %}
+
+{% block main %}
+
+<marquee behavior="alternate">
+    <h1 class="h3 mb-2 text-gray-800">ICI VOUS POUVEZ MODIFIER LE CLIENT</h1>
+    </marquee>
+<div class="row">
+    {% if messages %}
+   <div class="col-12">
+      {% for message in messages %}
+      {% if message.tags == 'success' %}
+      <div class="alert alert-success" style="margin-top:10px">{{ message }}</div>
+      {% endif %}
+      {% endfor %}
+    </div>
+    {% endif %}
+  </div>
+  <div class="container">
+    <form method="post" enctype="multipart/form-data" autocomplete="off" class="card p-2 mt-3" novalidate >
+        {% csrf_token %}
+        {% comment %} {{form|crispy}} {% endcomment %}
+
+        <div class="row">
+            <div class="col-6">{{form.nom_entreprise|as_crispy_field}}</div>
+            <div class="col-6">{{form.registre_de_commerce|as_crispy_field}}</div>
+        </div>
+        <hr style="border: 1px solid black;"></hr>
+        <div class="row">
+            <div class="col-12">{{form.adresse|as_crispy_field}}</div>   
+        </div>
+        <hr style="border: 1px solid black;"></hr>
+        <div class="row">
+            <div class="col-12">{{form.telephone|as_crispy_field}}</div>
+      
+        </div>
+
+       
+
+    <button type='submit' class='btn btn-primary' >Modifier</button>
+    </form>
+</div>
+
+{% endblock main %}

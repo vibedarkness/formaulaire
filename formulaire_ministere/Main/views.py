@@ -261,3 +261,75 @@ def logout_user(request):
     if request.user != None:
         logout(request)
     return redirect("/loginapp")
+
+
+def update_substence(request, substence_id):
+    context ={}
+
+    obj = get_object_or_404(Substence, id = substence_id)
+ 
+
+    form = SubstenceForm(request.POST or None, instance = obj)
+    if form.is_valid():
+        form.save()
+        messages.success(request,"Modification reussi")
+        return HttpResponseRedirect(reverse("Main:substence"))
+ 
+
+    context["form"] = form
+ 
+    return render(request, "update_substence.html", context)
+
+
+
+def update_client(request, client_id):
+
+    context ={}
+
+    obj = get_object_or_404(Client, id = client_id)
+ 
+
+    form = ClientForm(request.POST or None, instance = obj)
+    if form.is_valid():
+        form.save()
+        messages.success(request,"Modification reussi")
+        return HttpResponseRedirect(reverse("Main:client"))
+ 
+
+    context["form"] = form
+ 
+    return render(request, "update_client.html", context)
+
+
+
+def update_facture(request, data_id):
+    form = get_object_or_404(DataForm, id=data_id)
+    context = {
+        'form': form,
+
+    }
+    if request.method == 'POST':
+            type_facture=request.POST.get("type")
+            detenteur=request.POST.get("detenteur")
+            region=request.POST.get("region")
+            substence=request.POST.get("substence")
+            commune=request.POST.get("commune")
+            montant=request.POST.get("montant")
+            lieu=request.POST.get("lieu")
+
+            try:
+                course = DataForm.objects.get(id=data_id)
+                course.type_facture = type_facture
+                course.detenteur = detenteur
+                course.region = region
+                course.substence =substence
+                course.commune =commune
+                course.montant =montant
+                course.lieu_extraction =lieu
+                course.save()
+                messages.success(request, "Modification Reussi")
+                return HttpResponseRedirect(reverse("Main:update_facture"))
+            except:
+                messages.error(request, "Echec mise a jour")
+
+    return render(request, 'update_facture.html', context)

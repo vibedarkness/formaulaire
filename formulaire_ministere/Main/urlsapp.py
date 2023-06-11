@@ -24,17 +24,20 @@ urlpatterns = [
     path('add_form', DataView.as_view(), name='formulaire'),
     path('formulaire/<int:dataform_id>', ListFormulaireView.as_view(), name='vue_formulaire'),
     path('formulairedelete/<int:dataform_id>', views.delete_form, name='delete_formulaire'),
+    path('formulaireupdate/<int:data_id>', views.update_facture, name='update_facture'),    
 
 
     #-----------------Client urls-------------------------------
     path('add_client', ClientView.as_view(), name='add_client'),
     path('client', ListDataView.as_view(), name='client'),
     path('clientdelete/<int:client_id>', views.delete_client, name='delete_client'),
+    path('clientupdate/<int:client_id>', views.update_client, name='update_client'),
 
     #-----------------Substence urls-------------------------------
     path('substence', SubstenceDataView.as_view(), name='substence'),
     path('add_substence', SubstenceView.as_view(), name='add_substence'),
     path('substencedelete/<int:substence_id>', views.delete_substence, name='delete_substence'),
+    path('substenceupdate/<int:substence_id>', views.update_substence, name='update_substence'),
 
 
 
