@@ -40,3 +40,16 @@ class ClientDataForm(forms.ModelForm):
     #                 'class': 'form-control',
     #             }),
     #      }
+
+
+class DepotDataForm(forms.ModelForm):
+   class Meta:
+        model = DataForm
+
+        fields="__all__"
+
+class PaiementDataForm(forms.ModelForm):
+   class Meta:
+        model = DataForm
+
+        fields="__all__"

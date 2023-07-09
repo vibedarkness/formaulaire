@@ -39,6 +39,19 @@ urlpatterns = [
     path('substencedelete/<int:substence_id>', views.delete_substence, name='delete_substence'),
     path('substenceupdate/<int:substence_id>', views.update_substence, name='update_substence'),
 
+    #-----------------Attestation depôt urls-------------------------------
+
+    path('add_attestation_depot', AttestationDepotView.as_view(), name='depot'),
+    path('liste_attestation_depot/', ListDepotView.as_view(), name='attestation_depot'),
+    path('attestation_depot_view/<int:datadepot_id>', DepotView.as_view(), name='attestation_depot_view'),
+
+    #-----------------Attestation paiement urls-------------------------------
+
+    path('add_attestation_paiement', AttestationPaiementView.as_view(), name='paiement'),
+    path('liste_attestation_paiement/', ListPaiementView.as_view(), name='attestation_paiement'),
+    path('attestation_paiement_view/<int:datapaiement_id>', PaiementView.as_view(), name='attestation_paiement_view'),
+
+
 
 
 

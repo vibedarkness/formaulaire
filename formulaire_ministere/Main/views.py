@@ -31,12 +31,14 @@ class AcceuilView(View):
 
     client=Client.objects.all().count
     facture=DataForm.objects.all().count
-    substence=Substence.objects.all().count
+    depot=AttestationDepot.objects.all().count
+    paiement=AttestationPaiement.objects.all().count
 
     context={
         'total_client':client,
         'total_facture':facture,
-        'total_substence':substence
+        'total_depot':depot,
+        'total_paiement':paiement
     }
     # @login_required(login_url='loginapp')
     @method_decorator(login_required(login_url='Main:loginapp'))    
@@ -333,3 +335,139 @@ def update_facture(request, data_id):
                 messages.error(request, "Echec mise a jour")
 
     return render(request, 'update_facture.html', context)
+
+
+
+
+
+class AttestationDepotView(View):
+
+
+    template_name="add_attestation_depot.html"
+
+
+    @method_decorator(login_required(login_url='Main:loginapp'))
+    
+    def get(self,request, *args, **kwargs):
+        form = DepotDataForm()
+        detenteur=Client.objects.all()
+        context={
+           'detenteur':detenteur,
+           'form' :form,
+        }
+        return render(request,self.template_name,context)
+    
+    def post(self,request, *args, **kwargs):
+       if request.method=="POST":
+            detenteur=request.POST.get("detenteur")
+            montant=request.POST.get("montant")
+            cheque=request.POST.get("cheque")
+            try:
+                depot=AttestationDepot(detenteur_id=detenteur,montant=montant,cheque=cheque)
+                depot.save()
+                messages.success(request,"Ajout avec Success")
+                return HttpResponseRedirect(reverse("Main:depot"))
+            except Exception as e :
+                messages.error(request, "Pas d'ajout " + str(e))
+                print(e)
+                return HttpResponseRedirect(reverse("Main:depot"))
+
+class ListDepotView(View):
+
+    template_name="liste_attestation_depot.html"
+
+
+    @method_decorator(login_required(login_url='Main:loginapp'))
+    def get(self,request):
+        depot=AttestationDepot.objects.all()
+        context={
+            'depot':depot,
+        }
+
+        return render(request,self.template_name,context)
+    
+
+
+
+
+
+class DepotView(View):
+
+    template_name="attestation_depot.html"
+
+
+    @method_decorator(login_required(login_url='Main:loginapp'))
+    def get(self,request,datadepot_id):
+        form=AttestationDepot.objects.get(id=datadepot_id)
+        context={
+            'form':form,
+        }
+
+        return render(request,self.template_name,context)
+
+
+class AttestationPaiementView(View):
+
+
+    template_name="add_attestation_paiement.html"
+
+
+    @method_decorator(login_required(login_url='Main:loginapp'))
+    
+    def get(self,request, *args, **kwargs):
+        form = PaiementDataForm()
+        detenteur=Client.objects.all()
+        context={
+           'detenteur':detenteur,
+           'form' :form,
+        }
+        return render(request,self.template_name,context)
+    
+    def post(self,request, *args, **kwargs):
+       if request.method=="POST":
+            detenteur=request.POST.get("detenteur")
+            montant=request.POST.get("montant")
+            banque=request.POST.get("banque")
+            try:
+                paiement=AttestationPaiement(detenteur_id=detenteur,montant=montant,banque=banque)
+                paiement.save()
+                messages.success(request,"Ajout avec Success")
+                return HttpResponseRedirect(reverse("Main:paiement"))
+            except Exception as e :
+                messages.error(request, "Pas d'ajout " + str(e))
+                print(e)
+                return HttpResponseRedirect(reverse("Main:paiement"))
+
+
+
+
+
+class ListPaiementView(View):
+
+    template_name="liste_attestation_paiement.html"
+
+
+    @method_decorator(login_required(login_url='Main:loginapp'))
+    def get(self,request):
+        paiement=AttestationPaiement.objects.all()
+        context={
+            'paiement':paiement,
+        }
+
+        return render(request,self.template_name,context)
+    
+
+
+class PaiementView(View):
+
+    template_name="attestation_paiement.html"
+
+
+    @method_decorator(login_required(login_url='Main:loginapp'))
+    def get(self,request,datapaiement_id):
+        form=AttestationPaiement.objects.get(id=datapaiement_id)
+        context={
+            'form':form,
+        }
+
+        return render(request,self.template_name,context)

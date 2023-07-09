@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from num2words import num2words
 
 # Create your models here.
 
@@ -80,5 +81,20 @@ class DataForm(models.Model):
         return self.detenteur
 
 
-class Attestation(models.Model):
-    pass
+class AttestationDepot(models.Model):
+    detenteur = models.ForeignKey(Client, on_delete=models.CASCADE, default=0)
+    montant=models.IntegerField(default=0, null=True)
+    cheque = models.CharField(max_length = 150, null=True)
+    date=models.DateField(auto_now_add=True,null=True)
+
+    def numwords(self):
+        line_num=self.montant
+        return num2words(line_num, lang='fr')
+
+
+class AttestationPaiement(models.Model):
+    detenteur = models.ForeignKey(Client, on_delete=models.CASCADE, default=0)
+    montant=models.IntegerField(default=0, null=True)
+    banque = models.CharField(max_length = 150, null=True)  
+    date=models.DateField(auto_now_add=True,null=True)  
+    

@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+
+{% block title %}Liste Formulaire{% endblock title %}
+
+
+{% block main %}
+
+<div class="container-fluid">
+    <marquee behavior="alternate">
+        <h1 class="h3 mb-2 text-gray-800">LISTE DES ATTESTATIONS DE DEPÔT</h1>
+        </marquee>
+
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <a href="{% url 'Main:depot' %}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                ></i>Nouvelle Attestation de depot</a>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+
+
+
+<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+    <thead>
+        <tr>
+            <th>Detenteur</th>
+            <th>Montant (FRANCS CFA)</th>
+            <th>Cheque</th>
+            <th>Date</th>
+            <th>Actions</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        {% for dp in depot %}
+        <tr>
+            <td>{{dp.detenteur.nom_entreprise}}</td>
+            <td>{{dp.montant}}</td>
+            <td>{{dp.cheque}}</td>
+            <td>{{dp.date}}</td>
+            <td>
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle btn btn-info" href="#" id="navbarDropdown"
+                            role="button" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
+                            Actions
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right animated--fade-in"
+                            aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href=" {% url 'Main:attestation_depot_view' dp.id %}  ">Voir</a>
+                            <a class="dropdown-item" href="">Modifier</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="" onclick="return confirm('Etes vous sure de vouloir supprimer ?')">Supprimer</a>
+                        </div>
+                    </li>
+                </ul>
+
+            </td>
+
+
+        </tr>
+        {% endfor %}
+        
+    </tbody>
+</table>
+
+</div>
+</div>
+</div>
+
+
+
+{% endblock main %}
+
